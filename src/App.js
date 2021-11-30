@@ -60,7 +60,7 @@ class App extends React.Component {
       <br/>
       <h2>FOLLOWERS:</h2>
       <br/>
-      <FollowerList />
+      <FollowerList followers={this.state.followers}/>
     </div>);
   }
 }

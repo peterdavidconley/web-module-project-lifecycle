@@ -6,7 +6,8 @@ class FollowerList extends React.Component{
     render(){
         return(
             <div className='followers'>
-                <h3>Follower's List Component (hard coded). Need to map over followers array and return a Follower component for every one.</h3>
+                {this.props.followers.map(follower => {return <Follower follower={follower}/>}
+                )}
             </div>
         )
     }
