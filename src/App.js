@@ -42,15 +42,56 @@ class App extends React.Component {
 
   }
 
+  handleChange = (e) => {
+    this.setState({
+        ...this.state,
+        currentuser: e.target.value
+    });
+  }
+
+  handleSubmit = (e) => {
+
+    e.preventDefault();
+
+    // Current user profile Axios call
+
+    axios.get(`https://api.github.com/users/${this.state.currentuser}`)
+    .then(resp => {
+        this.setState({
+          ...this.state,
+          profile: resp.data,
+        })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+    // Current user followers Axios Call
+
+    axios.get(`https://api.github.com/users/${this.state.currentuser}/followers`)
+    .then(resp => {
+      this.setState({
+        ...this.state,
+        followers: resp.data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+  }
+
   render() {
     return(
     <div>
       <section className='top'>
         <h1>GITHUB INFO</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input 
           placeholder='Search Username'
           type='text'
+          onChange={this.handleChange}
+          value={this.state.currentuser}
           />
           <button>Search</button>
         </form>
