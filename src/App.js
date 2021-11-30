@@ -12,6 +12,23 @@ class App extends React.Component {
     profile: [],
   }
 
+  componentDidMount(){
+
+    // Axios call for profile
+
+    axios.get(`https://api.github.com/users/peterdavidconley`)
+    .then(resp => {
+      console.log(resp)
+    })
+    .catch(err => {
+      console.error(err)
+    })
+
+
+    // Axios call for followers list
+
+  }
+
   render() {
     return(
     <div>
@@ -30,7 +47,7 @@ class App extends React.Component {
       <br/>
       <h2>FOLLOWERS:</h2>
       <br/>
-      <h4>Followers List Component Goes Here</h4>
+      <FollowerList />
     </div>);
   }
 }
